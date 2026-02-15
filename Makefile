@@ -25,6 +25,7 @@ deploy:
 	
 	# Ajustando refencia do endereço de destino
 	cat $(DEPLOY_ADDRESS_IP)
+	ls -lha ~/.ssh
 	cat ~/.ssh/known_hosts
 	ssh-keyscan $(DEPLOY_ADDRESS_IP) >> ~/.ssh/known_hosts
 
