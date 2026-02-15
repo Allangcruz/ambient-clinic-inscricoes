@@ -14,12 +14,16 @@
         "build": "vite build"
     },
     "devDependencies": {
+        "@popperjs/core": "^2.11.8",
+        "bootstrap": "^5.3.8",
         "ntl": "^5.1.0",
+        "sass": "^1.97.3",
         "vite": "^7.3.1"
     },
     "dependencies": {
         "@picocss/pico": "^2.1.1",
-        "bootstrap": "^5.3.8",
+        "datatables.net": "^2.3.7",
+        "datatables.net-dt": "^2.3.7",
         "gridjs": "^6.2.0",
         "jquery": "^4.0.0",
         "ky": "^1.14.3"

@@ -38,10 +38,8 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
-<script src="<?= base_url('assets/js/inscricoes.js') ?>?version=<?= esc(date('Ymdhis')) ?>"></script>
-<script>
-    $(function () {
-        ambientclinic.inscricao.init()
-    });
-</script>
+    <?= vite_assets('src/main.js') ?>
+    <script>
+        console.log("inscricao");
+    </script>
 <?= $this->endSection() ?>

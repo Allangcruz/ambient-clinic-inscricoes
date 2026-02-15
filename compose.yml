@@ -63,8 +63,8 @@ services:
       - enterprise_network
     environment:
       TZ: America/Sao_Paulo
-      MYSQL_DATABASE: enterprise_ead
-      MYSQL_USER: enterprise_ead
+      MYSQL_DATABASE: ambientclinic
+      MYSQL_USER: ambientclinic
       MYSQL_ROOT_PASSWORD: password
       MYSQL_PASSWORD: password
     deploy:

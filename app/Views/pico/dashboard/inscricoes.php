@@ -3,16 +3,16 @@
 <?= $this->section('content') ?>
 <h1>Inscrições</h1>
 <div class="overflow-auto">
-    <table id="table-inscricao">
+    <table id="table-inscricao" class="striped">
         <thead>
-            <tr class="bg-success">
-                <th class="col-1">#</th>
-                <th class="col-3">Nome</th>
-                <th class="col-2">CPF</th>
-                <th class="col-3">E-mail</th>
-                <th class="col-2">Telefone</th>
-                <th class="col-2">Pago?</th>
-                <th class="col-1">Ação</th>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Pago?</th>
+                <th>Ação</th>
             </tr>
         </thead>
     </table>
@@ -20,9 +20,8 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
-
-  <?= vite_assets('src/app.js') ?>
-<script>
-  console.log("inscricao");
-</script>
+    <?= vite_assets('src/main.js') ?>
+    <script>
+        console.log("inscricao");
+    </script>
 <?= $this->endSection() ?>

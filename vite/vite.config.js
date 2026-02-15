@@ -6,7 +6,7 @@ export default defineConfig({
     outDir: 'public/vite/assets/js',
     rollupOptions: {
       // Substitua pelo caminho real do seu arquivo JS
-      input: './src/app.js', 
+      input: './src/main.js', 
     },
   },
   server: {
@@ -19,5 +19,17 @@ export default defineConfig({
     watch: {
       usePolling: true, // Necessário para detectar mudanças em volumes Docker
     },
+  },
+  css: {
+     preprocessorOptions: {
+        scss: {
+          silenceDeprecations: [
+            'import',
+            'mixed-decls',
+            'color-functions',
+            'global-builtin',
+          ],
+        },
+     },
   },
 });

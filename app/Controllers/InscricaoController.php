@@ -14,12 +14,13 @@ class InscricaoController extends BaseController
     public function __construct()
     {
         helper('vite');
+        $this->inscricaoModel = new InscricaoModel();
     }
 
     public function index(): string
     {
-        // return view('bootstrap-5/dashboard/inscricoes');
-        return view('pico/dashboard/inscricoes');
+        return view('bootstrap-5/dashboard/inscricoes');
+        // return view('pico/dashboard/inscricoes');
     }
 
     public function listar(): ResponseInterface

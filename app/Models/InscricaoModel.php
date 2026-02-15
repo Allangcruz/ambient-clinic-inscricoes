@@ -13,7 +13,17 @@ class InscricaoModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'nome',
+        'email',
+        'telefone',
+        'cpf',
+        'perfil',
+        'crmv',
+        'matricula',
+        'instituicao',
+        'pago'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -45,10 +55,9 @@ class InscricaoModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function getUsuarioFilter($request)
+    public function getInscricaoFilter($request)
     {
-        $queryBuilder = $this->select('id, nome, email, telefone, perfil, cpf')
-                        ->where('deleted_at IS NULL');
+        $queryBuilder = $this->select('id, nome, email, telefone, perfil, cpf, pago');
 
         return DataTable::of($queryBuilder)
             ->filter(function ($queryBuilder, $request) {
