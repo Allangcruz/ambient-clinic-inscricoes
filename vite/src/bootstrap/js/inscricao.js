@@ -25,7 +25,6 @@ const Inscricao = {
     },
 
     setupTable(el) {
-        // No DataTables 2.0, usamos 'new DataTable()' passando o elemento do DOM
         this.instance = new DataTable(el, {
         processing: true,
         serverSide: true,

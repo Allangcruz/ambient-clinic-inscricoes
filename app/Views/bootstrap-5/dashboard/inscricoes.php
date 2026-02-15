@@ -17,13 +17,13 @@
                                 <table class="table thead-light table-striped table-bordered table-hover" id="table-inscricao">
                                     <thead>
                                         <tr class="bg-success">
-                                            <th class="col-1">#</th>
-                                            <th class="col-3">Nome</th>
-                                            <th class="col-2">CPF</th>
-                                            <th class="col-3">E-mail</th>
-                                            <th class="col-2">Telefone</th>
-                                            <th class="col-2">Pago?</th>
-                                            <th class="col-1">Ação</th>
+                                            <th>#</th>
+                                            <th>Nome</th>
+                                            <th>CPF</th>
+                                            <th>E-mail</th>
+                                            <th>Telefone</th>
+                                            <th>Pago?</th>
+                                            <th>Ação</th>
                                         </tr>
                                     </thead>
                                 </table>
