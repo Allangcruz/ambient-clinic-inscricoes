@@ -27,9 +27,8 @@ jobs:
 
       - name: Run Test Backend
         run: |
-          composer update
           composer validate --no-check-publish
-          composer install --no-interaction --prefer-dist
+          composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader
 
       - name: Front-end
         working-directory: vite
