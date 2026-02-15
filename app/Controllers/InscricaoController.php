@@ -11,6 +11,11 @@ class InscricaoController extends BaseController
     use ResponseTrait;
     protected InscricaoModel $inscricaoModel;
 
+    public function __construct()
+    {
+        helper('vite');
+    }
+
     public function index(): string
     {
         // return view('bootstrap-5/dashboard/inscricoes');

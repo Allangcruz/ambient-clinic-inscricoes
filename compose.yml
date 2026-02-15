@@ -19,6 +19,7 @@ services:
       - ./.docker/php/php.ini:/usr/local/etc/php/conf.d/custom.ini
     ports:
       - "9000:9000"
+      - "5173:5173"
     environment:
       TZ: America/Sao_Paulo
     networks:
