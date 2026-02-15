@@ -1,0 +1,81 @@
+name: Deploy no Servidor
+on:
+  workflow_dispatch:
+    inputs:
+      ambiente:
+        description: 'Selecione o ambiente de deploy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    services: 
+      mysql:
+        image: mysql:8.0.31
+        options: >-
+          --memory=512m
+          --cpus=0.8
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -u root -ppassword"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: enterprise_ead_test
+          MYSQL_ROOT_PASSWORD: password
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref }}
+         
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'        
+
+      - name: Run Test Backend
+        working-directory: src
+        run: |
+          composer update --lock
+          composer validate --no-check-publish
+          composer install --no-interaction --prefer-dist
+          composer test
+        env:
+          CI_ENVIRONMENT: testing
+          database.tests.DBDriver: MySQLi
+          database.tests.hostname: 0.0.0.0
+          database.tests.username: root
+          database.tests.port: 3306
+          database.tests.database: enterprise_ead_test
+
+      - name: Front-end
+        working-directory: src
+        run: npm install && npm run dev > /dev/null
+
+      # - name: Run Test Front-end
+      #   working-directory: src
+      #   run: npm run cy:headless
+
+      - name: Zipar o código
+        run: make compactar
+
+      - name: Configure SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          known_hosts: ${{ secrets.DEPLOY_ADDRESS_IP }}
+
+      - name: Configurar o ambiente de deploy
+        run: make deploy && make config
+        env:
+          DEPLOY_ADDRESS_IP: ${{ secrets.DEPLOY_ADDRESS_IP }}
+          DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        
