@@ -1,0 +1,13 @@
+label.error{
+    color: red;
+    margin-bottom: 2px;
+}
+
+input.error {
+    border: 1px dotted red;
+}
+
+.label-required:after {
+	content: '*';
+	color: red;
+}
