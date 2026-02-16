@@ -10,14 +10,9 @@ compactar:
 	spark 
 
 deploy:
-	@if [ -z "ambientclinic" ]; then \
-		echo "Erro: A variável de ambiente DEPLOY_USERNAME não está definida." >&2; \
-		exit 1; \
-	fi
-	@if [ -z "89.117.32.89" ]; then \
-		echo "Erro: A variável de ambiente DEPLOY_ADDRESS_IP não está definida." >&2; \
-		exit 1; \
-	fi
+	ssh -t -v -i ~/.ssh/ambientclinic ambientclinic@89.117.32.89
+
+deploy2:
 	@if [ -z "$(DEPLOY_PATH)" ]; then \
 		echo "Erro: A variável de ambiente DEPLOY_PATH não está definida." >&2; \
 		exit 1; \
