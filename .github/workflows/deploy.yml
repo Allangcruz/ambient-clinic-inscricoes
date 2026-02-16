@@ -50,14 +50,8 @@ jobs:
               IdentityFile ~/.ssh/ambientclinic
               IdentitiesOnly yes
 
-      - name: Testar conexão ou fazer Deploy
-        run: |
-          ssh -o StrictHostKeyChecking=no ambientclinic@servidor-ambientclinic "ls -la /var/www/"
-
-      # - name: Configurar o ambiente de deploy
-      #   run: make deploy && make config
-      #   env:
-      #     DEPLOY_ADDRESS_IP: ${{ secrets.DEPLOY_ADDRESS_IP }}
-      #     DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
-      #     DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+      - name: Configurar o ambiente de deploy
+        run: make deploy && make config
+        env:
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         
