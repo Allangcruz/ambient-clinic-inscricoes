@@ -26,6 +26,6 @@ config:
 	ssh -t -v ambientclinic@servidor.ambientclinic ' \
 	cd "$(DEPLOY_PATH)" && \
 	cp "$(DEPLOY_PATH)"/../.env "$(DEPLOY_PATH)"/.env && \
-	rm -rf app public vendor writable && \
+	rm -rf app public vendor && \
 	unzip -o -q deploy.zip && \
 	sudo chown -R www-data:www-data $(DEPLOY_PATH)/writable/ '
