@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     manifest: true, 
-    outDir: 'public/vite/assets/js',
+    outDir: '../public/vite/assets/js',
     rollupOptions: {
       // Substitua pelo caminho real do seu arquivo JS
       input: './src/main.js', 
@@ -23,6 +23,7 @@ export default defineConfig({
   css: {
      preprocessorOptions: {
         scss: {
+          quietDeps: true,
           silenceDeprecations: [
             'import',
             'mixed-decls',
