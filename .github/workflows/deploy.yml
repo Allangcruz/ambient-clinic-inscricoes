@@ -52,7 +52,7 @@ jobs:
               IdentitiesOnly yes
 
       - name: Configurar o ambiente de deploy
-        run: make deploy && make config
+        run: make deploy
         env:
           DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         
