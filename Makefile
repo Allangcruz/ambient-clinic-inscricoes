@@ -10,7 +10,7 @@ compactar:
 	spark 
 
 deploy:
-	ssh -t -v -i ~/.ssh/ambientclinic ambientclinic@89.117.32.89
+	ssh -t -v ambientclinic@servidor.ambientclinic
 
 deploy2:
 	@if [ -z "$(DEPLOY_PATH)" ]; then \

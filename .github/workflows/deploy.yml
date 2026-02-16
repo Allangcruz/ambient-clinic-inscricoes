@@ -44,7 +44,8 @@ jobs:
           name: ambientclinic
           known_hosts: ${{ secrets.DEPLOY_ADDRESS_IP }}
           config: |
-            Host servidor-ambientclinic
+            Host servidor.ambientclinic
+              StrictHostKeyChecking no
               HostName 89.117.32.89
               User ambientclinic
               IdentityFile ~/.ssh/ambientclinic
