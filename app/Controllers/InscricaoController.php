@@ -13,7 +13,6 @@ class InscricaoController extends BaseController
 
     public function __construct()
     {
-        helper('vite');
         $this->inscricaoModel = new InscricaoModel();
     }
 

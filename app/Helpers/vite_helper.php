@@ -4,6 +4,7 @@ function vite_assets($entry)
 {
     $env = env('CI_ENVIRONMENT', 'production');
     $devServer = "http://localhost:5173";
+    
 
     if ($env === 'development') {
         return '
@@ -11,8 +12,8 @@ function vite_assets($entry)
             <script type="module" src="' . $devServer . '/' . $entry . '"></script>
         ';
     }
-
-    $manifestPath = FCPATH . 'dist/manifest.json';
+    
+    $manifestPath = FCPATH . 'vite/.vite/manifest.json';
     if (!file_exists($manifestPath)) {
         return '';
     }
@@ -26,9 +27,9 @@ function vite_assets($entry)
     $file = $manifest[$entry]['file'];
     $css = isset($manifest[$entry]['css']) ? $manifest[$entry]['css'] : [];
 
-    $html = '<script type="module" src="' . base_url('dist/' . $file) . '"></script>';
+    $html = '<script type="module" src="' . base_url('vite/' . $file) . '"></script>';
     foreach ($css as $cssFile) {
-        $html .= '<link rel="stylesheet" href="' . base_url('dist/' . $cssFile) . '">';
+        $html .= '<link rel="stylesheet" href="' . base_url('vite/' . $cssFile) . '">';
     }
 
     return $html;

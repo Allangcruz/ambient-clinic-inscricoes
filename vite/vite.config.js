@@ -3,7 +3,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   build: {
     manifest: true, 
-    outDir: '../public/vite/assets/js',
+    outDir: '../public/vite/',
     rollupOptions: {
       // Substitua pelo caminho real do seu arquivo JS
       input: './src/main.js', 

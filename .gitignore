@@ -143,3 +143,4 @@ src/build/
 src/public/assets/teste-allan/
 
 .docker/init/
+vite/
