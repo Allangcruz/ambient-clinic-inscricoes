@@ -52,7 +52,7 @@ jobs:
 
       - name: Testar conexão ou fazer Deploy
         run: |
-          ssh -p 22 ambientclinic@89.117.32.89 "ls -la /var/www/"
+          ssh -p 22 ambientclinic@servidor-ambientclinic "ls -la /var/www/"
 
       # - name: Configurar o ambiente de deploy
       #   run: make deploy && make config
