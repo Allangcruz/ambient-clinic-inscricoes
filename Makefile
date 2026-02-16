@@ -23,13 +23,6 @@ deploy:
 		exit 1; \
 	fi
 	
-	@echo "Ajustando refencia do endereço de destino"
-	pwd
-	ls -lha ~/.ssh
-	cat $(DEPLOY_ADDRESS_IP)
-	cat ~/.ssh/known_hosts
-	
-
 	@echo "Inicializando Rsync"
 	rsync -avzP deploy.zip $(DEPLOY_USERNAME)@$(DEPLOY_ADDRESS_IP):$(DEPLOY_PATH) \
 		--recursive \
