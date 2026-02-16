@@ -28,5 +28,7 @@ config:
 	cp "$(DEPLOY_PATH)"/../.env "$(DEPLOY_PATH)"/.env && \
 	sudo rm -rf app public vendor writable && \
 	unzip -o -q deploy.zip  && \
-	sudo chown -R www-data:www-data $(DEPLOY_PATH)/writable/ && \
-	php spark cache:clear'
+	pwd && \
+	ls -lha && \
+	sudo chown -R www-data:www-data $(DEPLOY_PATH)/writable && \
+	ls -lha '
