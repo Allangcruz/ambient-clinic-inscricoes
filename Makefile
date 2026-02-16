@@ -28,7 +28,7 @@ deploy:
 	ls -lha ~/.ssh
 	cat $(DEPLOY_ADDRESS_IP)
 	cat ~/.ssh/known_hosts
-	ssh-keyscan $(DEPLOY_ADDRESS_IP) >> ~/.ssh/known_hosts
+	
 
 	@echo "Inicializando Rsync"
 	rsync -avzP deploy.zip $(DEPLOY_USERNAME)@$(DEPLOY_ADDRESS_IP):$(DEPLOY_PATH) \

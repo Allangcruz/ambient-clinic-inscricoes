@@ -41,7 +41,14 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.DEPLOY_SSH_KEY }}
+          name: ambientclinic
           known_hosts: ${{ secrets.DEPLOY_ADDRESS_IP }}
+          config: |
+            Host servidor-ambientclinic
+              HostName 89.117.32.89
+              User ambientclinic
+              IdentityFile ~/.ssh/ambientclinic
+              IdentitiesOnly yes
 
       - name: Configurar o ambiente de deploy
         run: make deploy && make config
