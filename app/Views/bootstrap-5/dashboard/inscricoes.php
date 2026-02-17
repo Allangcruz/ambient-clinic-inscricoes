@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col">
-                    <div class="card">
+                    <div class="card card-primary card-outline">
                         <div class="card-header ui-sortable-handle" style="cursor: move;">
                             <h3 class="card-title">
                                 Inscrições
@@ -19,9 +19,9 @@
                                         <tr class="bg-success">
                                             <th>#</th>
                                             <th>Nome</th>
-                                            <th>CPF</th>
                                             <th>E-mail</th>
                                             <th>Telefone</th>
+                                            <th>CPF</th>
                                             <th>Pago?</th>
                                             <th>Ação</th>
                                         </tr>
@@ -39,7 +39,4 @@
 
 <?= $this->section('scripts') ?>
     <?= vite_assets('src/main.js') ?>
-    <script>
-        console.log("inscricao");
-    </script>
 <?= $this->endSection() ?>

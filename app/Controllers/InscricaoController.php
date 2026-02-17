@@ -16,13 +16,13 @@ class InscricaoController extends BaseController
         $this->inscricaoModel = new InscricaoModel();
     }
 
-    public function index(): string
+    public function viewInscricoes(): string
     {
         return view('bootstrap-5/dashboard/inscricoes');
         // return view('pico/dashboard/inscricoes');
     }
 
-    public function listar(): ResponseInterface
+    public function index(): ResponseInterface
     {
         try {
             return $this->inscricaoModel->getInscricaoFilter($this->request);
@@ -31,8 +31,59 @@ class InscricaoController extends BaseController
         }
     }
 
-    public function status(): string
+    public function delete($id): ResponseInterface
     {
-        return view('auth/login');
+        try {
+            $inscricao = $this->inscricaoModel->getInscricao($id);
+            if (! $inscricao) {
+                return $this->responseNotFound($this->getMessageNotFound($id));
+            }
+
+            $this->inscricaoModel->delete($id);
+
+            return $this->responseNoContent();
+        } catch (\Exception $e) {
+            return $this->responseInternalServerError($e->getMessage());
+        }
+    }
+
+    public function show($id): ResponseInterface
+    {
+        try {
+            $inscricao = $this->inscricaoModel->getInscricao($id);
+
+            if (! $inscricao) {
+                return $this->responseNotFound($this->getMessageNotFound($id));
+            }
+            
+            return $this->response->setJSON(['data' => $inscricao]);
+        } catch (\Exception $e) {
+            return $this->responseInternalServerError($e->getMessage());
+        }
+    }
+
+    private function getMessageNotFound(?int $id = null)
+    {
+        return "Inscrição '{$id}' não encontrado";
+    }
+
+    public function update($id): ResponseInterface
+    {
+        try {
+            $inscricao = $this->inscricaoModel->getInscricao($id);
+
+            if (! $inscricao) {
+                return $this->responseNotFound($this->getMessageNotFound($id));
+            }
+
+            $request = $this->request->getJSON();
+            $statusPagamento = $request->status ?? null;
+
+            $this->inscricaoModel->update($id, ['pago' => $statusPagamento]);
+            
+            return $this->responseSuccess('Pagamento atualizado com sucesso!');
+        } catch (\Exception $e) {
+            return $this->responseInternalServerError($e->getMessage());
+        }
     }
 }

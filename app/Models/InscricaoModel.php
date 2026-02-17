@@ -11,7 +11,7 @@ class InscricaoModel extends Model
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
         'nome',
@@ -57,16 +57,13 @@ class InscricaoModel extends Model
 
     public function getInscricaoFilter($request)
     {
-        $queryBuilder = $this->select('id, nome, email, telefone, perfil, cpf, pago');
+        $queryBuilder = $this->where('deleted_at IS NULL');
 
-        return DataTable::of($queryBuilder)
-            ->filter(function ($queryBuilder, $request) {
-                if (! empty($request->filter)) {
-                    $queryBuilder->like('nome', $request->filter);
-                    $queryBuilder->orLike('email', $request->filter);
-                    $queryBuilder->orLike('telefone', $request->filter);
-                }
-            })
-            ->toJson(true);
+        return DataTable::of($queryBuilder)->toJson(true);
+    }
+
+    public function getInscricao($id)
+    {
+        return $this->find($id);
     }
 }

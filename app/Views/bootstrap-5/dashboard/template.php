@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="<?php base_url() ?>assets/imgs/icon.png" type="image/x-icon">
     <title><?= esc($title ?? 'Ambient Clinic') ?></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <?= $this->renderSection('css') ?>
 </head>
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
