@@ -9,3 +9,6 @@ $routes->resource('/api/inscricoes', [
     'controller'=> InscricaoController::class,
     'only' => ['index', 'show', 'delete', 'update'],
 ]);
+
+$routes->get('/api/inscricoes-exportar', [InscricaoController::class, 'exportar']);
+$routes->get('inscricoes/download/(:any)', 'InscricaoController::download/$1');

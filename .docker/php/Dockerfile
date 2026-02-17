@@ -5,8 +5,8 @@ LABEL maintainer="Allan Gonçalves da Cruz <allangcruz@gmail.com>"
 
 # Instalar extensões do PHP
 RUN apt-get update && apt-get install -y \
-    unzip zip curl git libzip-dev libonig-dev libicu-dev htop netcat-openbsd \
-    && docker-php-ext-install zip mbstring intl mysqli \
+    unzip zip curl git libzip-dev libpng-dev libjpeg-dev libonig-dev libicu-dev htop netcat-openbsd \
+    && docker-php-ext-install zip mbstring intl mysqli gd \
 #    && pecl install xdebug \
 #    && docker-php-ext-enable xdebug \
     && rm -rf /var/lib/apt/lists/*

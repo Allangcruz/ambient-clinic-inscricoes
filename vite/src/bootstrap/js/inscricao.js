@@ -16,7 +16,8 @@ const Inscricao = {
         telefone: $('#telefone'),
         perfil: $('#perfil'),
         cpf: $('#cpf'),
-        tableInscricao: $('#table-inscricao')[0]
+        tableInscricao: $('#table-inscricao')[0],
+        modalInscricao: $('#modal-inscricao')
     },
 
     instance: null,
@@ -188,7 +189,7 @@ const Inscricao = {
             },
             complete: function() {
                 setTimeout(() => {
-                    Swal.close();
+                    Swal.close()
                 }, 2000)
             },
             error: function (response) {
@@ -216,6 +217,24 @@ const Inscricao = {
             },
             allowOutsideClick: false,
             showConfirmButton: false
+        })
+    },
+    exportarExcel() {
+        $.ajax({
+            url: getPathAmbientClinic('api/inscricoes-exportar'),
+            type: 'GET',
+            beforeSend: function() {
+                window.Inscricao.loading()
+            },
+            success: function(response) {
+                Swal.close()
+                if (response.url) {
+                    window.location.href = response.url
+                }
+            },
+            error: function() {
+                Swal.fire("Erro", "Não foi possível gerar o Excel", "error")
+            }
         })
     }
 }
