@@ -6,6 +6,8 @@ use App\Models\InscricaoModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Traits\ResponseTrait;
 
+use CodeIgniter\I18n\Time;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -58,6 +60,9 @@ class InscricaoController extends BaseController
             if (! $inscricao) {
                 return $this->responseNotFound($this->getMessageNotFound($id));
             }
+
+            $createdAt = Time::parse($inscricao->created_at, 'America/Sao_Paulo', 'pt_BR');
+            $inscricao->created_at = $createdAt->format('d/m/Y H:i:s');
 
             return $this->response->setJSON(['data' => $inscricao]);
         } catch (\Exception $e) {

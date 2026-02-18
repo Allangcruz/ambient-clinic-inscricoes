@@ -6,6 +6,8 @@ import 'datatables.net-dt/css/dataTables.dataTables.css'
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 
+import { Modal } from 'bootstrap'
+
 
 const Inscricao = {
     elements: {
@@ -16,6 +18,11 @@ const Inscricao = {
         telefone: $('#telefone'),
         perfil: $('#perfil'),
         cpf: $('#cpf'),
+        instituicao: $('#instituicao'),
+        matricula: $('#matricula'),
+        crmv: $('#crmv'),
+        pago: $('#pago'),
+        createdAt: $('#created_at'),
         tableInscricao: $('#table-inscricao')[0],
         modalInscricao: $('#modal-inscricao')
     },
@@ -30,6 +37,10 @@ const Inscricao = {
         if (this.elements.tableInscricao) {
             this.setupTable(this.elements.tableInscricao)
         }
+    },
+
+    search() {
+        window.Inscricao.setupTable($('#table-inscricao')[0])
     },
 
     setupTable(el) {
@@ -165,11 +176,20 @@ const Inscricao = {
             },
             success: function (response) {
                 console.log(response)
-                // const inscricao = response.data
-                // $inscricaoId.val(inscricao.id)
-                // $inscricaoNome.val(inscricao.nome)
-                // $inscricaoEmail.val(inscricao.email)
-                // $inscricaoTelefone.val(inscricao.telefone)
+                const elementoModal = document.getElementById('modal-inscricao')
+                const modalInstancia = new Modal(elementoModal)
+                modalInstancia.show()
+                const inscricao = response.data
+                window.Inscricao.elements.nome.html(inscricao.nome)
+                window.Inscricao.elements.cpf.html(inscricao.cpf)
+                window.Inscricao.elements.email.html(inscricao.email)
+                window.Inscricao.elements.telefone.html(inscricao.telefone)
+                window.Inscricao.elements.createdAt.html(inscricao.created_at)
+                window.Inscricao.elements.crmv.html(inscricao.crmv)
+                window.Inscricao.elements.instituicao.html(inscricao.instituicao)
+                window.Inscricao.elements.matricula.html(inscricao.matricula)
+                window.Inscricao.elements.pago.html(inscricao.pago)
+                window.Inscricao.elements.perfil.html(inscricao.perfil)
             }
         })
     },

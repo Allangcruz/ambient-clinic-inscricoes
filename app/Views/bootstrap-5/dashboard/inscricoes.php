@@ -12,8 +12,11 @@
                                 Inscrições
                             </h3>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-primary" onclick="Inscricao.exportarExcel()">
+                                <button type="button" class="btn btn-primary mr-4" onclick="Inscricao.exportarExcel()">
                                     Exportar todos os dados
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="Inscricao.search()">
+                                    Atualizar listagem
                                 </button>
                             </div>
                         </div>
@@ -45,15 +48,54 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title">Detalhes da inscrição</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Modal body text goes here.</p>
+        <div class="row">
+            <div class="col-12">
+                <b>Pago</b>: <span id="pago"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Nome</b>: <span id="nome"></span>
+            </div>
+
+            <div class="col-12">
+                <b>CPF</b>: <span id="cpf"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Email</b>: <span id="email"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Telefone</b>: <span id="telefone"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Perfil</b>: <span id="perfil"></span>
+            </div>
+
+            <div class="col-12">
+                <b>CRMV</b>: <span id="crmv"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Instituição</b>: <span id="instituicao"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Matricula</b>: <span id="matricula"></span>
+            </div>
+
+            <div class="col-12">
+                <b>Data criação</b>: <span id="created_at"></span>
+            </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
       </div>
     </div>
   </div>
