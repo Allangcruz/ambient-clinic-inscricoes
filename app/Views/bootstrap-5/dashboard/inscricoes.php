@@ -6,9 +6,9 @@
         <div class="container">
             <div class="row mt-5">
                 <div class="col-md-12">
-                    <strong>Total Inscrições:
+                    <h3>Total Inscrições:
                         <span id="total_inscritos"></span>
-                    </strong>
+                    </h3>
                 </div>
 
                 <div class="col-md-12">
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <strong>Total estudantes pagos:
+                    <strong class="text-success">Total estudantes pagos:
                         <span id="total_estudantes_pagos"></span>
                     </strong>
                 </div>
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <strong>Total veterinários pagos:
+                    <strong class="text-success">Total veterinários pagos:
                         <span id="total_veterinarios_pagos"></span>
                     </strong>
                 </div>
