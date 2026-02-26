@@ -43,6 +43,7 @@ const Inscricao = {
 
     search() {
         window.Inscricao.setupTable($('#table-inscricao')[0])
+        this.indicadores()
     },
 
     setupTable(el) {
