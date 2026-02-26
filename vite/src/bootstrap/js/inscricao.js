@@ -37,6 +37,8 @@ const Inscricao = {
         if (this.elements.tableInscricao) {
             this.setupTable(this.elements.tableInscricao)
         }
+
+        this.indicadores()
     },
 
     search() {
@@ -45,9 +47,10 @@ const Inscricao = {
 
     setupTable(el) {
         this.instance = new DataTable(el, {
+            pageLength: 100,
             processing: true,
             serverSide: true,
-            searching: false,
+            searching: true,
             destroy: true,
             ajax: {
                 url: '/api/inscricoes',
@@ -66,7 +69,7 @@ const Inscricao = {
                         let styleBadgeEstudante = ""
                         let styleBadgeCrmv = ""
 
-                        if (data.crmv != null) {
+                        if (data.crmv != null && data.crmv != "") {
                             styleBadgeCrmv = `<br><span class="badge bg-primary">CRMV: ${data.crmv}</span>`
                         }
                         
@@ -227,7 +230,35 @@ const Inscricao = {
                 window.Inscricao.setupTable($('#table-inscricao')[0])
             }
         })
-    }, 
+    },
+
+    indicadores() {
+        $.ajax({
+            url: getPathAmbientClinic('api/inscricoes-indicadores'),
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            error: function (response) {
+                console.log(response)
+                Swal.fire({
+                    icon: "error",
+                    html: response.responseJSON.message
+                }) 
+            },
+            success: function (response) {
+                const indicador = response.data
+                $('#total_inscritos').html(indicador.total_inscritos)
+                $('#total_estudantes').html(indicador.total_estudantes)
+                $('#total_estudantes_pagos').html(indicador.total_estudantes_pagos)
+                $('#total_veterinarios').html(indicador.total_veterinarios)
+                $('#total_veterinarios_pagos').html(indicador.total_veterinarios_pagos)
+
+                $('#total_estudantes_pendente_pagamento').html(indicador.total_estudantes - indicador.total_estudantes_pagos)
+                $('#total_veterinarios_pendente_pagamento').html(indicador.total_veterinarios - indicador.total_veterinarios_pagos)
+                
+            }
+        })
+    },
 
     loading() {
         Swal.fire({

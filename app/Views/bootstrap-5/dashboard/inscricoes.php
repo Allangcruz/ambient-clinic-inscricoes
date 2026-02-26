@@ -5,6 +5,51 @@
     <div class="app-content">
         <div class="container">
             <div class="row mt-5">
+                <div class="col-md-12">
+                    <strong>Total Inscrições:
+                        <span id="total_inscritos"></span>
+                    </strong>
+                </div>
+
+                <div class="col-md-12">
+                    <hr>
+                    <strong>Total estudantes:
+                        <span id="total_estudantes"></span>
+                    </strong>
+                </div>
+
+                <div class="col-md-12">
+                    <strong>Total estudantes pagos:
+                        <span id="total_estudantes_pagos"></span>
+                    </strong>
+                </div>
+
+                <div class="col-md-12">
+                    <strong class="text-danger">Total estudantes pendente pagamento:
+                        <span id="total_estudantes_pendente_pagamento"></span>
+                    </strong>
+                </div>
+
+                <div class="col-md-12">
+                    <hr>
+                    <strong>Total veterinários:
+                        <span id="total_veterinarios"></span>
+                    </strong>
+                </div>
+
+                <div class="col-md-12">
+                    <strong>Total veterinários pagos:
+                        <span id="total_veterinarios_pagos"></span>
+                    </strong>
+                </div>
+
+                <div class="col-md-12">
+                    <strong class="text-danger">Total veterinários pendente pagamento:
+                        <span id="total_veterinarios_pendente_pagamento"></span>
+                    </strong>
+                </div>
+            </div>
+            <div class="row mt-5">
                 <div class="col">
                     <div class="card card-primary card-outline">
                         <div class="card-header ui-sortable-handle" style="cursor: move;">

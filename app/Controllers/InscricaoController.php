@@ -70,6 +70,23 @@ class InscricaoController extends BaseController
         }
     }
 
+    public function indicadores(): ResponseInterface
+    {
+        try {
+            $indicadores = [
+                'total_inscritos' => $this->inscricaoModel->getTotalInscritos(),
+                'total_estudantes' => $this->inscricaoModel->getTotalPorPerfil('estudante'),
+                'total_estudantes_pagos' => $this->inscricaoModel->getTotalPorPerfilPago('estudante'),
+                'total_veterinarios' => $this->inscricaoModel->getTotalPorPerfil('veterinario'),
+                'total_veterinarios_pagos' => $this->inscricaoModel->getTotalPorPerfilPago('veterinario'),
+            ];
+
+            return $this->response->setJSON(['data' => $indicadores]);
+        } catch (\Exception $e) {
+            return $this->responseInternalServerError($e->getMessage());
+        }
+    }
+
     private function getMessageNotFound($id)
     {
         return "Inscrição '{$id}' não encontrado";
@@ -151,7 +168,6 @@ class InscricaoController extends BaseController
         $path = WRITEPATH . 'uploads/' . $fileName;
 
         if (file_exists($path)) {
-            // O response->download força o navegador a baixar o arquivo
             return $this->response->download($path, null)->setFileName($fileName);
         } else {
             return redirect()->to('/')->with('error', 'Arquivo não encontrado.');

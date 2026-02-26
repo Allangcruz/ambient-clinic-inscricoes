@@ -59,11 +59,30 @@ class InscricaoModel extends Model
     {
         $queryBuilder = $this->where('deleted_at IS NULL');
 
-        return DataTable::of($queryBuilder)->toJson(true);
+        return DataTable::of($queryBuilder)
+            ->setSearchableColumns(['nome', 'email', 'telefone', 'cpf'])
+            ->toJson(true);
     }
 
-    public function getInscricao($id)
+    public function getInscricao($id): object
     {
-        return $this->find($id);
+        return $this->first($id);
+    }
+
+    public function getTotalInscritos(): int
+    {
+        return $this->countAllResults();
+    }
+
+    public function getTotalPorPerfil($perfil): int
+    {
+        return $this->where('perfil', $perfil)->countAllResults();
+    }
+
+    public function getTotalPorPerfilPago($perfil): int
+    {
+        return $this->where('perfil', $perfil)
+                    ->where('pago', 'Sim')
+                    ->countAllResults();
     }
 }
